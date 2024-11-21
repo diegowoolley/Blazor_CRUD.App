@@ -8,20 +8,41 @@
 
 <PageTitle>Index</PageTitle>
 
-<h1>Index</h1>
 
-<p>
-    <a href="clientes/create">Create New</a>
-</p>
 
-<QuickGrid Class="table" Items="context.clientes">
-    <PropertyColumn Property="clientes => clientes.Nome" />
-    <PropertyColumn Property="clientes => clientes.Documento" />
+<h1>Lista de Clientes</h1>
 
-    <TemplateColumn Context="clientes">
-        <a href="@($"clientes/edit?id={clientes.Id}")">Edit</a> |
-        <a href="@($"clientes/details?id={clientes.Id}")">Details</a> |
-        <a href="@($"clientes/delete?id={clientes.Id}")">Delete</a>
+
+<a class="btn mt-4 mb-4" href="/clientes/create">
+   <img src="Add_User-80_icon-icons.com_57380.png" alt="Adicionar Cliente"
+             width="40" height="40">
+</a>  
+
+<QuickGrid Class="table table-striped table-bordered table-primary text-center" Items="context.clientes">
+    <PropertyColumn Property="clientes => clientes.Nome" Class="text-center"/>
+    <PropertyColumn Property="clientes => clientes.Documento"  />
+
+    <TemplateColumn Context="clientes" Class="actions-column">
+        <a class="btn mt-1 mb-1" href="@($"clientes/edit?id={clientes.Id}")">
+
+            <img src="Edit_User-80_icon-icons.com_57329.png" alt="Editar Cliente"
+             width="25" height="25">
+            
+        </a> 
+        |
+        <a class="btn mt-1 mb-1" href="@($"clientes/details?id={clientes.Id}")">
+
+            <img src="Details-80_icon-icons.com_57338.png" alt="Detalhes Cliente"
+                 width="25" height="25">
+        
+        </a> |
+        <a class="btn mt-1 mb-1" href="@($"clientes/delete?id={clientes.Id}")">
+
+            <img src="Remove_User-80_icon-icons.com_57283.png" alt="Detalhes Cliente"
+                 width="25" height="25">
+        
+        
+        </a>
     </TemplateColumn>
 </QuickGrid>
 
