@@ -4,11 +4,12 @@
 @inject IDbContextFactory<Blazor_CRUD.App.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
 
-<PageTitle>Edit</PageTitle>
+<PageTitle>Editar cliente</PageTitle>
 
-<h1>Edit</h1>
+<p>
+    <img src="Edit_User-80_icon-icons.com_57329.png" alt="imagem editar cliente"  height="50" width="50"/>
+</p>
 
-<h2>Clientes</h2>
 <hr />
 @if (Clientes is null)
 {
@@ -32,15 +33,29 @@ else
                     <InputNumber id="documento" @bind-Value="Clientes.Documento" class="form-control" />
                     <ValidationMessage For="() => Clientes.Documento" class="text-danger" />
                 </div>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn me-3">
+
+                    <img src="savedisk_floppydisk_guardar_1543.png" alt="Botão salvar" height="30" width="30" />
+
+                </button>
+
+                <a href="/clientes">
+
+                    <img src="go-back256_24856.png" alt="Voltar para a Lista" height="30" width="30" />
+
+                </a>
             </EditForm>
         </div>
     </div>
 }
 
-<div>
-    <a href="/clientes">Back to List</a>
-</div>
+@* <div class="mt-4 d-flex align-content-end ">
+    <a href="/clientes">
+        
+        <img src="go-back256_24856.png" alt="Voltar para a Lista" height="30" width="30" />
+    
+    </a>
+</div> *@
 
 @code {
     [SupplyParameterFromQuery]

@@ -6,9 +6,12 @@
 
 <PageTitle>Create</PageTitle>
 
-<h1>Create</h1>
+<h1>
 
-<h2>Clientes</h2>
+    <img src="Add_User-80_icon-icons.com_57380.png" alt="Adicionar Cliente" height="50" width="50" />
+
+</h1>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -25,14 +28,22 @@
                 <InputNumber id="documento" @bind-Value="Clientes.Documento" class="form-control" /> 
                 <ValidationMessage For="() => Clientes.Documento" class="text-danger" /> 
             </div>        
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn me-3">
+                
+                <img src="savedisk_floppydisk_guardar_1543.png" alt="Salvar" height="30" width="30" />                
+
+            </button>
+
+            <a href="/clientes">
+
+                <img src="go-back256_24856.png" alt="Voltar a Lista" height="30" width="30" />
+
+            </a>
+
         </EditForm>
     </div>
 </div>
 
-<div>
-    <a href="/clientes">Back to List</a>
-</div>
 
 @code {
     [SupplyParameterFromForm]
