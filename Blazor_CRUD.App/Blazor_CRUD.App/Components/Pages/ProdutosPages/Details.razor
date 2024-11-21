@@ -1,0 +1,50 @@
+﻿@page "/produtos/details"
+@using Microsoft.EntityFrameworkCore
+@using BlazorCRUD.App.Data
+@inject IDbContextFactory<Blazor_CRUD.App.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h2>Produtos</h2>
+    <hr />
+    @if (produtos is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">Descricao</dt>
+            <dd class="col-sm-10">@produtos.Descricao</dd>
+            <dt class="col-sm-2">Quantidade</dt>
+            <dd class="col-sm-10">@produtos.Quantidade</dd>
+            <dt class="col-sm-2">Preco</dt>
+            <dd class="col-sm-10">@produtos.Preco</dd>
+        </dl>
+        <div>
+            <a href="@($"/produtos/edit?id={produtos.Id}")">Edit</a> |
+            <a href="@($"/produtos")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    private Produtos? produtos;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        produtos = await context.produtos.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (produtos is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}

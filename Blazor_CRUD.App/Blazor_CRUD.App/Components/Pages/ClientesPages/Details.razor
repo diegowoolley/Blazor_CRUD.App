@@ -1,0 +1,48 @@
+﻿@page "/clientes/details"
+@using Microsoft.EntityFrameworkCore
+@using BlazorCRUD.App.Data
+@inject IDbContextFactory<Blazor_CRUD.App.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h2>Clientes</h2>
+    <hr />
+    @if (clientes is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">Nome</dt>
+            <dd class="col-sm-10">@clientes.Nome</dd>
+            <dt class="col-sm-2">Documento</dt>
+            <dd class="col-sm-10">@clientes.Documento</dd>
+        </dl>
+        <div>
+            <a href="@($"/clientes/edit?id={clientes.Id}")">Edit</a> |
+            <a href="@($"/clientes")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    private Clientes? clientes;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        clientes = await context.clientes.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (clientes is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}

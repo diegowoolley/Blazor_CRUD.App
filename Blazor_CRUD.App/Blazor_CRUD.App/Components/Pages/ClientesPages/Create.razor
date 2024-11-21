@@ -1,0 +1,49 @@
+﻿@page "/clientes/create"
+@using Microsoft.EntityFrameworkCore
+@using BlazorCRUD.App.Data
+@inject IDbContextFactory<Blazor_CRUD.App.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h2>Clientes</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Clientes" OnValidSubmit="AddClientes" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert"/>
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome:</label> 
+                <InputText id="nome" @bind-Value="Clientes.Nome" class="form-control" /> 
+                <ValidationMessage For="() => Clientes.Nome" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="documento" class="form-label">Documento:</label> 
+                <InputNumber id="documento" @bind-Value="Clientes.Documento" class="form-control" /> 
+                <ValidationMessage For="() => Clientes.Documento" class="text-danger" /> 
+            </div>        
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/clientes">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private Clientes Clientes { get; set; } = new();
+
+    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task AddClientes()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.clientes.Add(Clientes);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/clientes");
+    }
+}
