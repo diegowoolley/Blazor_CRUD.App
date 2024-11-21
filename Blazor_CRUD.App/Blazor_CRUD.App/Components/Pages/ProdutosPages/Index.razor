@@ -6,23 +6,41 @@
 @implements IAsyncDisposable
 @inject IDbContextFactory<Blazor_CRUD.App.Data.ApplicationDbContext> DbFactory
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Produtos</PageTitle>
 
-<h1>Index</h1>
+<h1>Lista de Produtos</h1>
 
-<p>
-    <a href="produtos/create">Create New</a>
-</p>
+<a class="btn mt-4 mb-4" href="/produtos/create">
 
-<QuickGrid Class="table" Items="context.produtos">
+    <img src="stuffitboxproduct_stuffit_caj_2624.png" alt="Produto" height="40" width="40" />
+
+</a>
+
+
+<QuickGrid Class="table table-bordered table-primary text-center" Items="context.produtos">
     <PropertyColumn Property="produtos => produtos.Descricao" />
     <PropertyColumn Property="produtos => produtos.Quantidade" />
     <PropertyColumn Property="produtos => produtos.Preco" />
 
     <TemplateColumn Context="produtos">
-        <a href="@($"produtos/edit?id={produtos.Id}")">Edit</a> |
-        <a href="@($"produtos/details?id={produtos.Id}")">Details</a> |
-        <a href="@($"produtos/delete?id={produtos.Id}")">Delete</a>
+        <a class="btn mt-1 mb-1" href="@($"produtos/edit?id={produtos.Id}")">
+           
+            
+            <img src="businesssettings_thebox_theproduct_negocio_2327.png" alt="Editar produto" height="30" width="30" />
+        
+        </a> |
+        <a class="btn mt-1 mb-1" href="@($"produtos/details?id={produtos.Id}")">
+           
+            
+         <img src="business_inventory_maintenance_product_box_boxes_2326.png" alt="Detalhes produto" height="30" width="30" />
+
+        
+        </a> |
+        <a href="@($"produtos/delete?id={produtos.Id}")">
+            
+        <img src="32officeicons-3_89720.png" alt="Remover produto" height="30" width="30" />
+        
+        </a>
     </TemplateColumn>
 </QuickGrid>
 

@@ -18,7 +18,11 @@
     <nav class="flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                <span class="me-3">
+
+                    <img src="diagram-06_24511.png" alt="Home" height="30" width="30" />
+
+                </span> Home
             </NavLink>
         </div>
         
@@ -28,38 +32,42 @@
 
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="clientes">
-                        <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> Clientes
+                        <span class=" me-3 ">
+
+                            <img src="User-80_icon-icons.com_57249.png" alt="Clientes" height="30" width="30"/>
+
+                        </span> Clientes
                     </NavLink>
                 </div>
 
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="produtos">
-                        <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Produtos
+                        <span class="me-3">
+
+                            <img src="stuffitboxproduct_stuffit_caj_2624.png" alt="Produto menu" height="30" width="30" />
+
+                        </span> Produtos
                     </NavLink>
                 </div>
-
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="counter">
-                        <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-                    </NavLink>
-                </div>
-
-
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="weather">
-                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-                    </NavLink>
-                </div>
+               
 
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="auth">
-                        <span class="bi bi-lock-nav-menu" aria-hidden="true"></span> Auth Required
+                        <span class="me-3">
+
+                            <img src="security-protection-protect-key-password-login_108554.png" alt="Autenticação Requerida" height="30" width="30"/>
+
+                        </span> Auth Requerida
                     </NavLink>
                 </div>
 
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="Account/Manage">
-                        <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> @context.User.Identity?.Name
+                        <span class="me-3">
+
+                            <img src="User-80_icon-icons.com_57249.png" alt="Usuário Logado" height="30" width="30" />
+
+                        </span> @context.User.Identity?.Name
                     </NavLink>
                 </div>
                 <div class="nav-item px-3">
@@ -67,7 +75,11 @@
                         <AntiforgeryToken />
                         <input type="hidden" name="ReturnUrl" value="@currentUrl" />
                         <button type="submit" class="nav-link">
-                            <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Logout
+                            <span class="me-3">
+                                 
+                                <img src="Logout_37127.png" alt="Logout" height="30" width="30" />
+
+                            </span> Logout
                         </button>
                     </form>
                 </div>               
@@ -77,12 +89,20 @@
             <NotAuthorized>
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="Account/Register">
-                        <span class="bi bi-person-nav-menu" aria-hidden="true"></span> Register
+                        <span class="me-3">
+
+                            <img src="Add_User-80_icon-icons.com_57380.png" alt="Registrar Usuário" height="30" width="30" />
+
+                        </span> Registro de Usuário
                     </NavLink>
                 </div>
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="Account/Login">
-                        <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> Login
+                        <span class="me-3">
+
+                            <img src="Login_37128.png" alt="Login" height="30" width="30"/>
+
+                        </span> Login
                     </NavLink>
                 </div>
             </NotAuthorized>
