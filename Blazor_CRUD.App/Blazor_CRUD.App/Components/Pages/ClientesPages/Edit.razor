@@ -7,10 +7,10 @@
 <PageTitle>Editar cliente</PageTitle>
 
 <p>
-    <img src="Edit_User-80_icon-icons.com_57329.png" alt="imagem editar cliente"  height="50" width="50"/>
+    <img src="Edit_User-80_icon-icons.com_57329.png" alt="imagem editar cliente" height="50" width="50" />
 </p>
 
-<hr />
+
 @if (Clientes is null)
 {
     <p><em>Loading...</em></p>
@@ -18,44 +18,114 @@
 else
 {
     <div class="row">
-        <div class="col-md-4">
-            <EditForm method="post" Model="Clientes" OnValidSubmit="UpdateClientes" FormName="edit" Enhance>
-                <DataAnnotationsValidator />
-                <ValidationSummary role="alert"/>
-                <input type="hidden" name="Clientes.Id" value="@Clientes.Id" />
-                <div class="mb-3">
-                    <label for="nome" class="form-label">Nome:</label>
-                    <InputText id="nome" @bind-Value="Clientes.Nome" class="form-control" />
-                    <ValidationMessage For="() => Clientes.Nome" class="text-danger" />
+        <div class="col-md-12">
+            <div class="card shadow-lg mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Editar Cliente</h5>
                 </div>
-                <div class="mb-3">
-                    <label for="documento" class="form-label">Documento:</label>
-                    <InputNumber id="documento" @bind-Value="Clientes.Documento" class="form-control" />
-                    <ValidationMessage For="() => Clientes.Documento" class="text-danger" />
+                <div class="card-body">
+                    <EditForm method="post" Model="Clientes" OnValidSubmit="UpdateClientes" FormName="edit" Enhance>
+                        <DataAnnotationsValidator />
+                        <ValidationSummary role="alert" />
+                        <input type="hidden" name="Clientes.Id" value="@Clientes.Id" />
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="nome" class="form-label">Nome:</label>
+                                <InputText id="nome" @bind-Value="Clientes.Nome" class="form-control" />
+                                <ValidationMessage For="() => Clientes.Nome" class="text-danger" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="documento" class="form-label">Documento:</label>
+                                <InputText id="documento" @bind-Value="Clientes.Documento" class="form-control" />
+                                <ValidationMessage For="() => Clientes.Documento" class="text-danger" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email:</label>
+                                <InputText id="email" @bind-Value="Clientes.email" class="form-control" />
+                                <ValidationMessage For="() => Clientes.email" class="text-danger" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cep" class="form-label">CEP:</label>
+                                <InputText id="cep" @bind-Value="Clientes.cep" class="form-control" />
+                                <ValidationMessage For="() => Clientes.cep" class="text-danger" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="endereco" class="form-label">Endereço:</label>
+                                <InputText id="endereco" @bind-Value="Clientes.endereco" class="form-control" />
+                                <ValidationMessage For="() => Clientes.endereco" class="text-danger" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="bairro" class="form-label">Bairro:</label>
+                                <InputText id="bairro" @bind-Value="Clientes.bairro" class="form-control" />
+                                <ValidationMessage For="() => Clientes.bairro" class="text-danger" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="numero" class="form-label">Número:</label>
+                                <InputNumber id="numero" @bind-Value="Clientes.numero" class="form-control" />
+                                <ValidationMessage For="() => Clientes.numero" class="text-danger" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cidade" class="form-label">Cidade:</label>
+                                <InputText id="cidade" @bind-Value="Clientes.cidade" class="form-control" />
+                                <ValidationMessage For="() => Clientes.cidade" class="text-danger" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="uf" class="form-label">UF:</label>
+                                <InputText id="uf" @bind-Value="Clientes.uf" class="form-control" />
+                                <ValidationMessage For="() => Clientes.uf" class="text-danger" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="telefone" class="form-label">Telefone:</label>
+                                <InputText id="telefone" @bind-Value="Clientes.telefone" class="form-control" />
+                                <ValidationMessage For="() => Clientes.telefone" class="text-danger" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="celular" class="form-label">Celular:</label>
+                                <InputText id="celular" @bind-Value="Clientes.celular" class="form-control" />
+                                <ValidationMessage For="() => Clientes.celular" class="text-danger" />
+                            </div>
+                            @* Uncomment if Foto is needed *@
+                            @* <div class="col-md-6 mb-3">
+                            <label for="foto" class="form-label">Foto:</label>
+                            <InputText id="foto" @bind-Value="Clientes.Foto" class="form-control" />
+                            <ValidationMessage For="() => Clientes.Foto" class="text-danger" />
+                        </div> *@
+                        </div>
+
+                        <!-- Card footer with button inside the form -->
+                        <div class="card-footer text-end">
+                            <button type="submit" class="btn me-3">
+                                <img src="savedisk_floppydisk_guardar_1543.png" alt="Botão salvar" height="30" width="30" />
+                            </button>
+                            <a href="/clientes">
+                                <img src="go-back256_24856.png" alt="Voltar para a Lista" height="30" width="30" />
+                            </a>
+                        </div>
+
+                    </EditForm>
                 </div>
-                <button type="submit" class="btn me-3">
-
-                    <img src="savedisk_floppydisk_guardar_1543.png" alt="Botão salvar" height="30" width="30" />
-
-                </button>
-
-                <a href="/clientes">
-
-                    <img src="go-back256_24856.png" alt="Voltar para a Lista" height="30" width="30" />
-
-                </a>
-            </EditForm>
+            </div>
         </div>
     </div>
+
 }
 
-@* <div class="mt-4 d-flex align-content-end ">
-    <a href="/clientes">
-        
-        <img src="go-back256_24856.png" alt="Voltar para a Lista" height="30" width="30" />
-    
-    </a>
-</div> *@
 
 @code {
     [SupplyParameterFromQuery]
@@ -67,7 +137,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        Clientes ??= await context.clientes.FirstOrDefaultAsync(m => m.Id == Id);
+        Clientes ??= await context.Clientes.FirstOrDefaultAsync(m => m.Id == Id);
 
         if (Clientes is null)
         {
@@ -104,6 +174,6 @@ else
     private bool ClientesExists(int id)
     {
         using var context = DbFactory.CreateDbContext();
-        return context.clientes.Any(e => e.Id == id);
+        return context.Clientes.Any(e => e.Id == id);
     }
 }

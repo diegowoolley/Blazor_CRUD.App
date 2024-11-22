@@ -4,43 +4,104 @@
 @inject IDbContextFactory<Blazor_CRUD.App.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
 
-<PageTitle>Delete</PageTitle>
+<PageTitle>Remover Cliente</PageTitle>
 
 <h1>
 
-    <img src="Remove_User-80_icon-icons.com_57283.png" alt="Remover Cliente" height="50" width="50"/>
+    <img src="Remove_User-80_icon-icons.com_57283.png" alt="Remover Cliente" height="50" width="50" />
 
 </h1>
 
 <p>Deseja mesmo remover esse cliente?</p>
 <div>
     
-    <hr />
+  
     @if (clientes is null)
     {
         <p><em>Loading...</em></p>
     }
     else {
-        <dl class="row">
-            <dt class="col-sm-2">Nome</dt>
-            <dd class="col-sm-10">@clientes.Nome</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">Documento</dt>
-            <dd class="col-sm-10">@clientes.Documento</dd>
-        </dl>
-        <EditForm method="post" Model="clientes" OnValidSubmit="DeleteClientes" FormName="delete" Enhance>
-            <button type="submit" class="btn" disabled="@(clientes is null)">
+        <div class="card shadow-lg mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Detalhes do Cliente</h5>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-2">Nome:</dt>
+                    <dd class="col-sm-10">@clientes.Nome</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-2">Documento:</dt>
+                    <dd class="col-sm-10">@clientes.Documento</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-2">Email:</dt>
+                    <dd class="col-sm-10">@clientes.email</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-2">Cep:</dt>
+                    <dd class="col-sm-10">@clientes.cep</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-2">Endereço:</dt>
+                    <dd class="col-sm-10">@clientes.endereco</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-2">Bairro:</dt>
+                    <dd class="col-sm-10">@clientes.bairro</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-2">Número:</dt>
+                    <dd class="col-sm-10">@clientes.numero</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-2">Cidade:</dt>
+                    <dd class="col-sm-10">@clientes.cidade</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-2">UF:</dt>
+                    <dd class="col-sm-10">@clientes.uf</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-2">Telefone:</dt>
+                    <dd class="col-sm-10">@clientes.telefone</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-2">Celular:</dt>
+                    <dd class="col-sm-10">@clientes.celular</dd>
+                </dl>
+                @if(clientes.Foto == null)
+                {
+                    <dl class="row">
+                        <dt class="col-sm-2">Foto:</dt>
+                        <dd class="col-sm-10">
+                            <img src="SemFoto.png" alt="Foto do cliente" class="img-thumbnail" style="max-width: 80px;" />
+                        </dd>
+                    </dl>
 
-                <img src="Remove_User-80_icon-icons.com_57283.png" alt="Remover cliente" height="30" width="30" />
+                }else
+                {
 
-            </button>
-            <a href="/clientes">                
-            
-            <img src="go-back256_24856.png" alt="Voltar a Lista" height="30" width="30"/>
-            
-            </a>
-        </EditForm>
+                    <dl class="row">
+                        <dt class="col-sm-2">Foto:</dt>
+                        <dd class="col-sm-10">@clientes.Foto</dd>
+                    </dl>
+
+                }
+               
+            </div>
+            <div class="card-footer text-end">
+                <EditForm method="post" Model="clientes" OnValidSubmit="DeleteClientes" FormName="delete" Enhance>
+                    <button type="submit" class="btn me-3" disabled="@(clientes is null)">
+                        <img src="Remove_User-80_icon-icons.com_57283.png" alt="Remover cliente" height="30" width="30" />
+                    </button>
+                    <a href="/clientes">
+                        <img src="go-back256_24856.png" alt="Voltar a Lista" height="30" width="30" />
+                    </a>
+                </EditForm>
+            </div>
+        </div>
+
     }
 </div>
 
@@ -53,7 +114,7 @@
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        clientes = await context.clientes.FirstOrDefaultAsync(m => m.Id == Id);
+        clientes = await context.Clientes.FirstOrDefaultAsync(m => m.Id == Id);
 
         if (clientes is null)
         {
@@ -64,7 +125,7 @@
     private async Task DeleteClientes()
     {
         using var context = DbFactory.CreateDbContext();
-        context.clientes.Remove(clientes!);
+        context.Clientes.Remove(clientes!);
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/clientes");
     }

@@ -4,14 +4,13 @@
 @inject IDbContextFactory<Blazor_CRUD.App.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
 
-<PageTitle>Create</PageTitle>
+<PageTitle>Adicionar Cliente</PageTitle>
 
 <h1>
 
     <img src="Add_User-80_icon-icons.com_57380.png" alt="Adicionar Cliente" height="50" width="50" />
 
 </h1>
-
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -25,12 +24,62 @@
             </div>        
             <div class="mb-3">
                 <label for="documento" class="form-label">Documento:</label> 
-                <InputNumber id="documento" @bind-Value="Clientes.Documento" class="form-control" /> 
+                <InputText id="documento" @bind-Value="Clientes.Documento" class="form-control" /> 
                 <ValidationMessage For="() => Clientes.Documento" class="text-danger" /> 
             </div>        
+            <div class="mb-3">
+                <label for="email" class="form-label">E-mail:</label> 
+                <InputText id="email" @bind-Value="Clientes.email" class="form-control" /> 
+                <ValidationMessage For="() => Clientes.email" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="cep" class="form-label">Cep:</label> 
+                <InputText id="cep" @bind-Value="Clientes.cep" class="form-control" /> 
+                <ValidationMessage For="() => Clientes.cep" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="endereco" class="form-label">Endereço:</label> 
+                <InputText id="endereco" @bind-Value="Clientes.endereco" class="form-control" /> 
+                <ValidationMessage For="() => Clientes.endereco" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="bairro" class="form-label">Bairro:</label> 
+                <InputText id="bairro" @bind-Value="Clientes.bairro" class="form-control" /> 
+                <ValidationMessage For="() => Clientes.bairro" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="numero" class="form-label">Número:</label> 
+                <InputNumber id="numero" @bind-Value="Clientes.numero" class="form-control" /> 
+                <ValidationMessage For="() => Clientes.numero" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="cidade" class="form-label">Cidade:</label> 
+                <InputText id="cidade" @bind-Value="Clientes.cidade" class="form-control" /> 
+                <ValidationMessage For="() => Clientes.cidade" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="uf" class="form-label">Uf:</label> 
+                <InputText id="uf" @bind-Value="Clientes.uf" class="form-control" /> 
+                <ValidationMessage For="() => Clientes.uf" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone:</label> 
+                <InputText id="telefone" @bind-Value="Clientes.telefone" class="form-control" /> 
+                <ValidationMessage For="() => Clientes.telefone" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="celular" class="form-label">Celular:</label> 
+                <InputText id="celular" @bind-Value="Clientes.celular" class="form-control" /> 
+                <ValidationMessage For="() => Clientes.celular" class="text-danger" /> 
+            </div>        
+            @* <div class="mb-3">
+                <label for="foto" class="form-label">Foto:</label> 
+                <InputText id="foto" @bind-Value="Clientes.Foto" class="form-control" /> 
+                <ValidationMessage For="() => Clientes.Foto" class="text-danger" /> 
+            </div>  *@       
             <button type="submit" class="btn me-3">
-                
-                <img src="savedisk_floppydisk_guardar_1543.png" alt="Salvar" height="30" width="30" />                
+
+                <img src="savedisk_floppydisk_guardar_1543.png" alt="Salvar" height="30" width="30" />
 
             </button>
 
@@ -39,7 +88,6 @@
                 <img src="go-back256_24856.png" alt="Voltar a Lista" height="30" width="30" />
 
             </a>
-
         </EditForm>
     </div>
 </div>
@@ -53,7 +101,7 @@
     private async Task AddClientes()
     {
         using var context = DbFactory.CreateDbContext();
-        context.clientes.Add(Clientes);
+        context.Clientes.Add(Clientes);
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/clientes");
     }

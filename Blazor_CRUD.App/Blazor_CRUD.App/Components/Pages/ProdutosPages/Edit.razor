@@ -4,11 +4,15 @@
 @inject IDbContextFactory<Blazor_CRUD.App.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
 
-<PageTitle>Edit</PageTitle>
+<PageTitle>Editar Produtos</PageTitle>
 
-<h1>Edit</h1>
+<h1>
 
-<h2>Produtos</h2>
+    <img src="businesssettings_thebox_theproduct_negocio_2327.png" alt="Editar Produtos" height="40" width="40" />
+
+</h1>
+
+
 <hr />
 @if (Produtos is null)
 {
@@ -23,9 +27,24 @@ else
                 <ValidationSummary role="alert"/>
                 <input type="hidden" name="Produtos.Id" value="@Produtos.Id" />
                 <div class="mb-3">
+                    <label for="cod_barras" class="form-label">Cod_Barras:</label>
+                    <InputText id="cod_barras" @bind-Value="Produtos.Cod_Barras" class="form-control" />
+                    <ValidationMessage For="() => Produtos.Cod_Barras" class="text-danger" />
+                </div>
+                <div class="mb-3">
                     <label for="descricao" class="form-label">Descricao:</label>
                     <InputText id="descricao" @bind-Value="Produtos.Descricao" class="form-control" />
                     <ValidationMessage For="() => Produtos.Descricao" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="id_categoria" class="form-label">Id_categoria:</label>
+                    <InputNumber id="id_categoria" @bind-Value="Produtos.Id_categoria" class="form-control" />
+                    <ValidationMessage For="() => Produtos.Id_categoria" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="un_medida" class="form-label">Un_Medida:</label>
+                    <InputText id="un_medida" @bind-Value="Produtos.Un_Medida" class="form-control" />
+                    <ValidationMessage For="() => Produtos.Un_Medida" class="text-danger" />
                 </div>
                 <div class="mb-3">
                     <label for="quantidade" class="form-label">Quantidade:</label>
@@ -33,19 +52,65 @@ else
                     <ValidationMessage For="() => Produtos.Quantidade" class="text-danger" />
                 </div>
                 <div class="mb-3">
-                    <label for="preco" class="form-label">Preco:</label>
-                    <InputNumber id="preco" @bind-Value="Produtos.Preco" class="form-control" />
-                    <ValidationMessage For="() => Produtos.Preco" class="text-danger" />
+                    <label for="id_fornecedor" class="form-label">Id_fornecedor:</label>
+                    <InputNumber id="id_fornecedor" @bind-Value="Produtos.Id_fornecedor" class="form-control" />
+                    <ValidationMessage For="() => Produtos.Id_fornecedor" class="text-danger" />
                 </div>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <div class="mb-3">
+                    <label for="peso_medio" class="form-label">Peso_Medio:</label>
+                    <InputNumber id="peso_medio" @bind-Value="Produtos.Peso_Medio" class="form-control" />
+                    <ValidationMessage For="() => Produtos.Peso_Medio" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="peso_bruto" class="form-label">Peso_bruto:</label>
+                    <InputNumber id="peso_bruto" @bind-Value="Produtos.Peso_bruto" class="form-control" />
+                    <ValidationMessage For="() => Produtos.Peso_bruto" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="valor_compra" class="form-label">Valor_Compra:</label>
+                    <InputNumber id="valor_compra" @bind-Value="Produtos.Valor_Compra" class="form-control" />
+                    <ValidationMessage For="() => Produtos.Valor_Compra" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="margem_lucro" class="form-label">Margem_Lucro:</label>
+                    <InputNumber id="margem_lucro" @bind-Value="Produtos.Margem_Lucro" class="form-control" />
+                    <ValidationMessage For="() => Produtos.Margem_Lucro" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="valor_venda" class="form-label">Valor_Venda:</label>
+                    <InputNumber id="valor_venda" @bind-Value="Produtos.Valor_Venda" class="form-control" />
+                    <ValidationMessage For="() => Produtos.Valor_Venda" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="estoque_min" class="form-label">estoque_min:</label>
+                    <InputNumber id="estoque_min" @bind-Value="Produtos.estoque_min" class="form-control" />
+                    <ValidationMessage For="() => Produtos.estoque_min" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="estoque_max" class="form-label">estoque_max:</label>
+                    <InputNumber id="estoque_max" @bind-Value="Produtos.estoque_max" class="form-control" />
+                    <ValidationMessage For="() => Produtos.estoque_max" class="text-danger" />
+                </div>
+                @* <div class="mb-3">
+                    <label for="foto" class="form-label">Foto:</label>
+                    <InputText id="foto" @bind-Value="Produtos.Foto" class="form-control" />
+                    <ValidationMessage For="() => Produtos.Foto" class="text-danger" />
+                </div> *@
+                <button type="submit" class="btn me-3">
+
+                    <img src="savedisk_floppydisk_guardar_1543.png" alt="Salvar" height="30" width="30" />
+
+                </button>
+                <a href="/produtos">
+                    
+                <img src="go-back256_24856.png" alt="Voltar a lista" height="30" width="30"/>
+                
+                </a>
             </EditForm>
         </div>
     </div>
 }
 
-<div>
-    <a href="/produtos">Back to List</a>
-</div>
 
 @code {
     [SupplyParameterFromQuery]
@@ -57,7 +122,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        Produtos ??= await context.produtos.FirstOrDefaultAsync(m => m.Id == Id);
+        Produtos ??= await context.Produtos.FirstOrDefaultAsync(m => m.Id == Id);
 
         if (Produtos is null)
         {
@@ -94,6 +159,6 @@ else
     private bool ProdutosExists(int id)
     {
         using var context = DbFactory.CreateDbContext();
-        return context.produtos.Any(e => e.Id == id);
+        return context.Produtos.Any(e => e.Id == id);
     }
 }

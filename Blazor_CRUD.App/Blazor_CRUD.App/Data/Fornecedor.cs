@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using BlazorCRUD.App.Data;
+using System.ComponentModel.DataAnnotations;
 
-namespace BlazorCRUD.App.Data
+namespace Blazor_CRUD.App.Data
 {
-    public class Clientes
+    public class Fornecedor
     {
         public int Id { get; set; }
 
@@ -39,6 +40,8 @@ namespace BlazorCRUD.App.Data
         public string? celular { get; set; }
 
         public Byte[]? Foto { get; set; }
+
+        public ICollection<Produtos> produtos { get; set; } = new List<Produtos>();
 
 
     }

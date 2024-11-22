@@ -30,17 +30,57 @@ namespace Blazor_CRUD.App.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Documento")
-                        .HasColumnType("int");
+                    b.Property<string>("Documento")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<byte[]>("Foto")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("bairro")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("celular")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("cep")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("cidade")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("email")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("endereco")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("numero")
+                        .HasColumnType("int");
+
+                    b.Property<string>("telefone")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("uf")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("clientes");
+                    b.ToTable("Clientes");
                 });
 
             modelBuilder.Entity("BlazorCRUD.App.Data.Produtos", b =>
@@ -51,20 +91,65 @@ namespace Blazor_CRUD.App.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Cod_Barras")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<decimal>("Preco")
+                    b.Property<byte[]>("Foto")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("Id_categoria")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id_fornecedor")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("Margem_Lucro")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal?>("Peso_Medio")
+                        .HasColumnType("decimal(10,0)");
+
+                    b.Property<decimal?>("Peso_bruto")
                         .HasColumnType("decimal(10,2)");
 
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
 
+                    b.Property<string>("Un_Medida")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<decimal?>("Valor_Compra")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal>("Valor_Venda")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<int?>("categoriaId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("estoque_max")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("estoque_min")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("fornecedorId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("produtos");
+                    b.HasIndex("categoriaId");
+
+                    b.HasIndex("fornecedorId");
+
+                    b.ToTable("Produtos");
                 });
 
             modelBuilder.Entity("Blazor_CRUD.App.Data.ApplicationUser", b =>
@@ -130,6 +215,85 @@ namespace Blazor_CRUD.App.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Blazor_CRUD.App.Data.Categoria", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categoria");
+                });
+
+            modelBuilder.Entity("Blazor_CRUD.App.Data.Fornecedor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Documento")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<byte[]>("Foto")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("bairro")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("celular")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("cep")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("cidade")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("email")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("endereco")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("numero")
+                        .HasColumnType("int");
+
+                    b.Property<string>("telefone")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("uf")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Fornecedor");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -265,6 +429,21 @@ namespace Blazor_CRUD.App.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("BlazorCRUD.App.Data.Produtos", b =>
+                {
+                    b.HasOne("Blazor_CRUD.App.Data.Categoria", "categoria")
+                        .WithMany("produtos")
+                        .HasForeignKey("categoriaId");
+
+                    b.HasOne("Blazor_CRUD.App.Data.Fornecedor", "fornecedor")
+                        .WithMany("produtos")
+                        .HasForeignKey("fornecedorId");
+
+                    b.Navigation("categoria");
+
+                    b.Navigation("fornecedor");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -314,6 +493,16 @@ namespace Blazor_CRUD.App.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Blazor_CRUD.App.Data.Categoria", b =>
+                {
+                    b.Navigation("produtos");
+                });
+
+            modelBuilder.Entity("Blazor_CRUD.App.Data.Fornecedor", b =>
+                {
+                    b.Navigation("produtos");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Blazor_CRUD.App.Migrations
 {
     /// <inheritdoc />
-    public partial class inicial : Migration
+    public partial class Inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,32 +51,64 @@ namespace Blazor_CRUD.App.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "clientes",
+                name: "Categoria",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categoria", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Clientes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Documento = table.Column<int>(type: "int", nullable: false)
+                    Documento = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    cep = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    endereco = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    bairro = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    numero = table.Column<int>(type: "int", nullable: true),
+                    cidade = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    uf = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    telefone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    celular = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Foto = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_clientes", x => x.Id);
+                    table.PrimaryKey("PK_Clientes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "produtos",
+                name: "Fornecedor",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Descricao = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Quantidade = table.Column<int>(type: "int", nullable: false),
-                    Preco = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
+                    Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Documento = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    cep = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    endereco = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    bairro = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    numero = table.Column<int>(type: "int", nullable: true),
+                    cidade = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    uf = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    telefone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    celular = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Foto = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_produtos", x => x.Id);
+                    table.PrimaryKey("PK_Fornecedor", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -185,6 +217,44 @@ namespace Blazor_CRUD.App.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Produtos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Cod_Barras = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Descricao = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Id_categoria = table.Column<int>(type: "int", nullable: false),
+                    Un_Medida = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
+                    Quantidade = table.Column<int>(type: "int", nullable: false),
+                    Id_fornecedor = table.Column<int>(type: "int", nullable: false),
+                    Peso_Medio = table.Column<decimal>(type: "decimal(10,0)", nullable: true),
+                    Peso_bruto = table.Column<decimal>(type: "decimal(10,2)", nullable: true),
+                    Valor_Compra = table.Column<decimal>(type: "decimal(10,2)", nullable: true),
+                    Margem_Lucro = table.Column<decimal>(type: "decimal(10,2)", nullable: true),
+                    Valor_Venda = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    estoque_min = table.Column<int>(type: "int", nullable: true),
+                    estoque_max = table.Column<int>(type: "int", nullable: true),
+                    Foto = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    categoriaId = table.Column<int>(type: "int", nullable: true),
+                    fornecedorId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Produtos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Produtos_Categoria_categoriaId",
+                        column: x => x.categoriaId,
+                        principalTable: "Categoria",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Produtos_Fornecedor_fornecedorId",
+                        column: x => x.fornecedorId,
+                        principalTable: "Fornecedor",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -223,6 +293,16 @@ namespace Blazor_CRUD.App.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Produtos_categoriaId",
+                table: "Produtos",
+                column: "categoriaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Produtos_fornecedorId",
+                table: "Produtos",
+                column: "fornecedorId");
         }
 
         /// <inheritdoc />
@@ -244,16 +324,22 @@ namespace Blazor_CRUD.App.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "clientes");
+                name: "Clientes");
 
             migrationBuilder.DropTable(
-                name: "produtos");
+                name: "Produtos");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Categoria");
+
+            migrationBuilder.DropTable(
+                name: "Fornecedor");
         }
     }
 }

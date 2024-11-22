@@ -16,31 +16,43 @@
 
 </a>
 
-
-<QuickGrid Class="table table-bordered table-primary text-center" Items="context.produtos">
+<QuickGrid Class="table table-bordered table-striped table-primary" Items="context.Produtos">
+    @* <PropertyColumn Property="produtos => produtos.Cod_Barras" /> *@
     <PropertyColumn Property="produtos => produtos.Descricao" />
+    <PropertyColumn Property="produtos => produtos.Id_categoria" Title="Categoria" /> 
+    <PropertyColumn Property="produtos => produtos.Un_Medida"  Title="Un. Medida"/>
     <PropertyColumn Property="produtos => produtos.Quantidade" />
-    <PropertyColumn Property="produtos => produtos.Preco" />
+    <PropertyColumn Property="produtos => produtos.Id_fornecedor" Title="Fornecedor" />
+  @*   <PropertyColumn Property="produtos => produtos.Peso_Medio" />
+    <PropertyColumn Property="produtos => produtos.Peso_bruto" /> *@
+    <PropertyColumn Property="produtos => produtos.Valor_Compra" Title="Vl. Compra" />
+   @*  <PropertyColumn Property="produtos => produtos.Margem_Lucro" /> *@
+    <PropertyColumn Property="produtos => produtos.Valor_Venda" Title="Vl. Venda" />
+@*     <PropertyColumn Property="produtos => produtos.estoque_min" />
+    <PropertyColumn Property="produtos => produtos.estoque_max" /> *@
+    <PropertyColumn Property="produtos => produtos.Foto" />
 
     <TemplateColumn Context="produtos" Class="actions-column">
+
         <a class="btn mt-1 mb-1" href="@($"produtos/edit?id={produtos.Id}")">
-           
-            
+
+
             <img src="businesssettings_thebox_theproduct_negocio_2327.png" alt="Editar produto" height="30" width="30" />
-        
+
         </a> |
         <a class="btn mt-1 mb-1" href="@($"produtos/details?id={produtos.Id}")">
-           
-            
-         <img src="business_inventory_maintenance_product_box_boxes_2326.png" alt="Detalhes produto" height="30" width="30" />
 
-        
+
+            <img src="business_inventory_maintenance_product_box_boxes_2326.png" alt="Detalhes produto" height="30" width="30" />
+
+
         </a> |
         <a href="@($"produtos/delete?id={produtos.Id}")">
-            
-        <img src="32officeicons-3_89720.png" alt="Remover produto" height="30" width="30" />
-        
+
+            <img src="32officeicons-3_89720.png" alt="Remover produto" height="30" width="30" />
+
         </a>
+
     </TemplateColumn>
 </QuickGrid>
 

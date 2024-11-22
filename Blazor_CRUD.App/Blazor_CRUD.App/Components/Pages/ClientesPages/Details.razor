@@ -8,36 +8,85 @@
 
 <p>
 
-    <img src="Details-80_icon-icons.com_57338.png" alt="Detalhes de clientes"  height="50" width="50"/>
+    <img src="User-80_icon-icons.com_57249.png" alt="Detalhes de clientes" height="50" width="50" />
 
 </p>
 
-<div>
-    
-    <hr />
+<div>    
+
     @if (clientes is null)
     {
         <p><em>Loading...</em></p>
     }
     else {
-        <dl class="row">
-            <dt class="col-sm-2">Nome</dt>
-            <dd class="col-sm-10">@clientes.Nome</dd>
-            <dt class="col-sm-2">Documento</dt>
-            <dd class="col-sm-10">@clientes.Documento</dd>
-        </dl>
-        <div>
-            <a class="btn me-3" href="@($"/clientes/edit?id={clientes.Id}")">
-                
-            <img src="Edit_User-80_icon-icons.com_57329.png" alt="Editar cliente" height="30" width="30" />
-            
-            </a> 
-            <a href="@($"/clientes")">
-                
-            <img src="go-back256_24856.png" alt="Voltar para Lista" height="30" width="30"/>
-            
-            </a>
+        <div class="card shadow-lg mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Detalhes do Cliente</h5>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-2">Nome:</dt>
+                    <dd class="col-sm-10 mb-4">@clientes.Nome</dd>
+
+                    <dt class="col-sm-2">Documento:</dt>
+                    <dd class="col-sm-10 mb-4">@clientes.Documento</dd>
+
+                    <dt class="col-sm-2">Email:</dt>
+                    <dd class="col-sm-10 mb-4">@clientes.email</dd>
+
+                    <dt class="col-sm-2">Cep:</dt>
+                    <dd class="col-sm-10 mb-4">@clientes.cep</dd>
+
+                    <dt class="col-sm-2">Endereço:</dt>
+                    <dd class="col-sm-10 mb-4">@clientes.endereco</dd>
+
+                    <dt class="col-sm-2">Bairro:</dt>
+                    <dd class="col-sm-10 mb-4">@clientes.bairro</dd>
+
+                    <dt class="col-sm-2">Número:</dt>
+                    <dd class="col-sm-10 mb-4">@clientes.numero</dd>
+
+                    <dt class="col-sm-2">Cidade:</dt>
+                    <dd class="col-sm-10 mb-4">@clientes.cidade</dd>
+
+                    <dt class="col-sm-2">UF:</dt>
+                    <dd class="col-sm-10 mb-4">@clientes.uf</dd>
+
+                    <dt class="col-sm-2">Telefone:</dt>
+                    <dd class="col-sm-10 mb-4">@clientes.telefone</dd>
+
+                    <dt class="col-sm-2">Celular:</dt>
+                    <dd class="col-sm-10 mb-4">@clientes.celular</dd>
+                    @if(clientes.Foto == null)                    
+                    {   <dt class="col-sm-2">Foto:</dt>
+                        <dd class="col-sm-10">
+                            <img src="SemFoto.png" alt="Foto do cliente" class="img-thumbnail" style="max-width: 80px;" />
+                        </dd>
+                    }else
+                    {
+                        <dt class="col-sm-2">Foto:</dt>
+                        <dd class="col-sm-10">
+                            <img src="@clientes.Foto" alt="Foto do cliente" class="img-thumbnail" style="max-width:80px;" />
+                        </dd>
+
+                    }
+                    
+                </dl>
+            </div>
+            <div class="card-footer text-end">
+                <a class="btn me-3" href="@($"/clientes/edit?id={clientes.Id}")">
+
+                    <img src="Edit_User-80_icon-icons.com_57329.png" alt="Editar cliente" height="30" width="30" />
+
+                </a>
+                <a href="@($"/clientes")">
+
+                    <img src="go-back256_24856.png" alt="Voltar para Lista" height="30" width="30" />
+
+                </a>
+            </div>
         </div>
+   
     }
 </div>
 
@@ -50,7 +99,7 @@
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        clientes = await context.clientes.FirstOrDefaultAsync(m => m.Id == Id);
+        clientes = await context.Clientes.FirstOrDefaultAsync(m => m.Id == Id);
 
         if (clientes is null)
         {

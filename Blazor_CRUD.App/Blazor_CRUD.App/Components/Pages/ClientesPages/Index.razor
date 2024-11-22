@@ -6,42 +6,51 @@
 @implements IAsyncDisposable
 @inject IDbContextFactory<Blazor_CRUD.App.Data.ApplicationDbContext> DbFactory
 
-<PageTitle>Lista de Clientes</PageTitle>
-
+<PageTitle>Clientes</PageTitle>
 
 
 <h1>Lista de Clientes</h1>
 
 
 <a class="btn mt-4 mb-4" href="/clientes/create">
-   <img src="Add_User-80_icon-icons.com_57380.png" alt="Adicionar Cliente"
-             width="40" height="40">
-</a>  
+    <img src="Add_User-80_icon-icons.com_57380.png" alt="Adicionar Cliente"
+         width="40" height="40">
+</a>
 
-<QuickGrid Class="table table-striped table-bordered table-primary text-center" Items="context.clientes">
-    <PropertyColumn Property="clientes => clientes.Nome" Class="text-center"/>
-    <PropertyColumn Property="clientes => clientes.Documento"  />
+<QuickGrid Class="table table-bordered table-striped table-primary" Items="context.Clientes">
+    <PropertyColumn Property="clientes => clientes.Nome" />
+    <PropertyColumn Property="clientes => clientes.Documento" />
+    <PropertyColumn Property="clientes => clientes.email" Title="E-mail"/>
+@*     <PropertyColumn Property="clientes => clientes.cep" />
+    <PropertyColumn Property="clientes => clientes.endereco" />
+    <PropertyColumn Property="clientes => clientes.bairro" />
+    <PropertyColumn Property="clientes => clientes.numero" />
+    <PropertyColumn Property="clientes => clientes.cidade" />
+    <PropertyColumn Property="clientes => clientes.uf" /> *@
+    <PropertyColumn Property="clientes => clientes.telefone" Title="Telefone"/>
+    <PropertyColumn Property="clientes => clientes.celular" Title="Celular" />
+    <PropertyColumn Property="clientes => clientes.Foto" />
 
     <TemplateColumn Context="clientes" Class="actions-column">
         <a class="btn mt-1 mb-1" href="@($"clientes/edit?id={clientes.Id}")">
 
             <img src="Edit_User-80_icon-icons.com_57329.png" alt="Editar Cliente"
-             width="25" height="25">
-            
-        </a> 
+                 width="25" height="25">
+
+        </a>
         |
         <a class="btn mt-1 mb-1" href="@($"clientes/details?id={clientes.Id}")">
 
             <img src="Details-80_icon-icons.com_57338.png" alt="Detalhes Cliente"
                  width="25" height="25">
-        
+
         </a> |
         <a class="btn mt-1 mb-1" href="@($"clientes/delete?id={clientes.Id}")">
 
             <img src="Remove_User-80_icon-icons.com_57283.png" alt="Detalhes Cliente"
                  width="25" height="25">
-        
-        
+
+
         </a>
     </TemplateColumn>
 </QuickGrid>
