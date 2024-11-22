@@ -22,7 +22,7 @@
     <PropertyColumn Property="produtos => produtos.Quantidade" />
     <PropertyColumn Property="produtos => produtos.Preco" />
 
-    <TemplateColumn Context="produtos">
+    <TemplateColumn Context="produtos" Class="actions-column">
         <a class="btn mt-1 mb-1" href="@($"produtos/edit?id={produtos.Id}")">
            
             
