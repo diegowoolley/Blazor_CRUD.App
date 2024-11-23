@@ -21,76 +21,98 @@
         <p><em>Loading...</em></p>
     }
     else {
-        <dl class="row">
-            <dt class="col-sm-2">Cod_Barras</dt>
-            <dd class="col-sm-10">@produtos.Cod_Barras</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">Descricao</dt>
-            <dd class="col-sm-10">@produtos.Descricao</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">Id_categoria</dt>
-            <dd class="col-sm-10">@produtos.Id_categoria</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">Un_Medida</dt>
-            <dd class="col-sm-10">@produtos.Un_Medida</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">Quantidade</dt>
-            <dd class="col-sm-10">@produtos.Quantidade</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">Id_fornecedor</dt>
-            <dd class="col-sm-10">@produtos.Id_fornecedor</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">Peso_Medio</dt>
-            <dd class="col-sm-10">@produtos.Peso_Medio</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">Peso_bruto</dt>
-            <dd class="col-sm-10">@produtos.Peso_bruto</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">Valor_Compra</dt>
-            <dd class="col-sm-10">@produtos.Valor_Compra</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">Margem_Lucro</dt>
-            <dd class="col-sm-10">@produtos.Margem_Lucro</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">Valor_Venda</dt>
-            <dd class="col-sm-10">@produtos.Valor_Venda</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">estoque_min</dt>
-            <dd class="col-sm-10">@produtos.estoque_min</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">estoque_max</dt>
-            <dd class="col-sm-10">@produtos.estoque_max</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-2">Foto</dt>
-            <dd class="col-sm-10">@produtos.Foto</dd>
-        </dl>
-        <EditForm method="post" Model="produtos" OnValidSubmit="DeleteProdutos" FormName="delete" Enhance>
+        <div class="card shadow-lg mb-4">
+            <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Remover Produto</h5>
+                @if (produtos.Foto == null)
+                {
+                    <img src="SemFoto.png" alt="Foto do produto" class="img-thumbnail" style="max-width: 80px;" />
+                }
+                else
+                {
+                    <img src="@produtos.Foto" alt="Foto do produto" class="img-thumbnail" style="max-width: 80px;" />
+                }
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-2">Cód. Barras:</dt>
+                    <dd class="col-sm-10">@produtos.Cod_Barras</dd>
+                </dl>
 
-            <button type="submit" class="btn me-3" disabled="@(produtos is null)">
+                <dl class="row">
+                    <dt class="col-sm-2">Descrição:</dt>
+                    <dd class="col-sm-10">@produtos.Descricao</dd>
+                </dl>
 
-                <img src="32officeicons-3_89720.png" alt="Remover produto" height="30" width="30" />    
+                <dl class="row">
+                    <dt class="col-sm-2">Categoria:</dt>
+                    <dd class="col-sm-10">@produtos.Id_categoria</dd>
+                </dl>
 
-            </button> 
-            <a href="/produtos">
-                
-            
-                <img src="go-back256_24856.png" alt="Voltar a Lista"  height="30" width="30"/>
-            
-            </a>
-        </EditForm>
+                <dl class="row">
+                    <dt class="col-sm-2">Un. Medida:</dt>
+                    <dd class="col-sm-10">@produtos.Un_Medida</dd>
+                </dl>
+
+                <dl class="row">
+                    <dt class="col-sm-2">Quantidade:</dt>
+                    <dd class="col-sm-10">@produtos.Quantidade</dd>
+                </dl>
+
+                <dl class="row">
+                    <dt class="col-sm-2">Fornecedor:</dt>
+                    <dd class="col-sm-10">@produtos.Id_fornecedor</dd>
+                </dl>
+
+                <dl class="row">
+                    <dt class="col-sm-2">Peso Médio:</dt>
+                    <dd class="col-sm-10">@produtos.Peso_Medio</dd>
+                </dl>
+
+                <dl class="row">
+                    <dt class="col-sm-2">Peso Bruto:</dt>
+                    <dd class="col-sm-10">@produtos.Peso_bruto</dd>
+                </dl>
+
+                <dl class="row">
+                    <dt class="col-sm-2">Vl Compra:</dt>
+                    <dd class="col-sm-10">@produtos.Valor_Compra</dd>
+                </dl>
+
+                <dl class="row">
+                    <dt class="col-sm-2">Margem de Lucro:</dt>
+                    <dd class="col-sm-10">@produtos.Margem_Lucro</dd>
+                </dl>
+
+                <dl class="row">
+                    <dt class="col-sm-2">Vl. Venda:</dt>
+                    <dd class="col-sm-10">@produtos.Valor_Venda</dd>
+                </dl>
+
+                <dl class="row">
+                    <dt class="col-sm-2">Estoque Mínimo:</dt>
+                    <dd class="col-sm-10">@produtos.estoque_min</dd>
+                </dl>
+
+                <dl class="row">
+                    <dt class="col-sm-2">Estoque Máximo:</dt>
+                    <dd class="col-sm-10">@produtos.estoque_max</dd>
+                </dl>
+            </div>
+            <div class="card-footer text-end">
+                <EditForm method="post" Model="produtos" OnValidSubmit="DeleteProdutos" FormName="delete" Enhance>
+                    <button type="submit" class="btn me-3" disabled="@(produtos == null)" title="Remover">
+                        <img src="32officeicons-3_89720.png" alt="Remover produto" height="30" width="30" />                       
+                    </button>
+                    <a href="/produtos" class="btn" title="Voltar para a Lista">
+                        <img src="go-back256_24856.png" alt="Voltar para a Lista" height="30" width="30" />
+                    </a>
+                </EditForm>
+              
+            </div>
+        </div>
+
+
     }
 </div>
 

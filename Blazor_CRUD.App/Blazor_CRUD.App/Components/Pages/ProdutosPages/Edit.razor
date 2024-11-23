@@ -12,8 +12,6 @@
 
 </h1>
 
-
-<hr />
 @if (Produtos is null)
 {
     <p><em>Loading...</em></p>
@@ -21,94 +19,162 @@
 else
 {
     <div class="row">
-        <div class="col-md-4">
-            <EditForm method="post" Model="Produtos" OnValidSubmit="UpdateProdutos" FormName="edit" Enhance>
-                <DataAnnotationsValidator />
-                <ValidationSummary role="alert"/>
-                <input type="hidden" name="Produtos.Id" value="@Produtos.Id" />
-                <div class="mb-3">
-                    <label for="cod_barras" class="form-label">Cod_Barras:</label>
-                    <InputText id="cod_barras" @bind-Value="Produtos.Cod_Barras" class="form-control" />
-                    <ValidationMessage For="() => Produtos.Cod_Barras" class="text-danger" />
+        <div class="col-md-12">
+            <div class="card shadow-lg mb-4">
+                <div class="card-header bg-warning text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Editar Produto</h5>
+                    @if (Produtos.Foto == null)
+                    {
+                        <img src="SemFoto.png" alt="Foto do produto" class="img-thumbnail" style="max-width: 80px;" />
+                    }
+                    else
+                    {
+                        <img src="@Produtos.Foto" alt="Foto do produto" class="img-thumbnail" style="max-width: 80px;" />
+                    }
                 </div>
-                <div class="mb-3">
-                    <label for="descricao" class="form-label">Descricao:</label>
-                    <InputText id="descricao" @bind-Value="Produtos.Descricao" class="form-control" />
-                    <ValidationMessage For="() => Produtos.Descricao" class="text-danger" />
-                </div>
-                <div class="mb-3">
-                    <label for="id_categoria" class="form-label">Id_categoria:</label>
-                    <InputNumber id="id_categoria" @bind-Value="Produtos.Id_categoria" class="form-control" />
-                    <ValidationMessage For="() => Produtos.Id_categoria" class="text-danger" />
-                </div>
-                <div class="mb-3">
-                    <label for="un_medida" class="form-label">Un_Medida:</label>
-                    <InputText id="un_medida" @bind-Value="Produtos.Un_Medida" class="form-control" />
-                    <ValidationMessage For="() => Produtos.Un_Medida" class="text-danger" />
-                </div>
-                <div class="mb-3">
-                    <label for="quantidade" class="form-label">Quantidade:</label>
-                    <InputNumber id="quantidade" @bind-Value="Produtos.Quantidade" class="form-control" />
-                    <ValidationMessage For="() => Produtos.Quantidade" class="text-danger" />
-                </div>
-                <div class="mb-3">
-                    <label for="id_fornecedor" class="form-label">Id_fornecedor:</label>
-                    <InputNumber id="id_fornecedor" @bind-Value="Produtos.Id_fornecedor" class="form-control" />
-                    <ValidationMessage For="() => Produtos.Id_fornecedor" class="text-danger" />
-                </div>
-                <div class="mb-3">
-                    <label for="peso_medio" class="form-label">Peso_Medio:</label>
-                    <InputNumber id="peso_medio" @bind-Value="Produtos.Peso_Medio" class="form-control" />
-                    <ValidationMessage For="() => Produtos.Peso_Medio" class="text-danger" />
-                </div>
-                <div class="mb-3">
-                    <label for="peso_bruto" class="form-label">Peso_bruto:</label>
-                    <InputNumber id="peso_bruto" @bind-Value="Produtos.Peso_bruto" class="form-control" />
-                    <ValidationMessage For="() => Produtos.Peso_bruto" class="text-danger" />
-                </div>
-                <div class="mb-3">
-                    <label for="valor_compra" class="form-label">Valor_Compra:</label>
-                    <InputNumber id="valor_compra" @bind-Value="Produtos.Valor_Compra" class="form-control" />
-                    <ValidationMessage For="() => Produtos.Valor_Compra" class="text-danger" />
-                </div>
-                <div class="mb-3">
-                    <label for="margem_lucro" class="form-label">Margem_Lucro:</label>
-                    <InputNumber id="margem_lucro" @bind-Value="Produtos.Margem_Lucro" class="form-control" />
-                    <ValidationMessage For="() => Produtos.Margem_Lucro" class="text-danger" />
-                </div>
-                <div class="mb-3">
-                    <label for="valor_venda" class="form-label">Valor_Venda:</label>
-                    <InputNumber id="valor_venda" @bind-Value="Produtos.Valor_Venda" class="form-control" />
-                    <ValidationMessage For="() => Produtos.Valor_Venda" class="text-danger" />
-                </div>
-                <div class="mb-3">
-                    <label for="estoque_min" class="form-label">estoque_min:</label>
-                    <InputNumber id="estoque_min" @bind-Value="Produtos.estoque_min" class="form-control" />
-                    <ValidationMessage For="() => Produtos.estoque_min" class="text-danger" />
-                </div>
-                <div class="mb-3">
-                    <label for="estoque_max" class="form-label">estoque_max:</label>
-                    <InputNumber id="estoque_max" @bind-Value="Produtos.estoque_max" class="form-control" />
-                    <ValidationMessage For="() => Produtos.estoque_max" class="text-danger" />
-                </div>
-                @* <div class="mb-3">
-                    <label for="foto" class="form-label">Foto:</label>
-                    <InputText id="foto" @bind-Value="Produtos.Foto" class="form-control" />
-                    <ValidationMessage For="() => Produtos.Foto" class="text-danger" />
-                </div> *@
-                <button type="submit" class="btn me-3">
+                <div class="card-body">
+                    <EditForm method="post" Model="Produtos" OnValidSubmit="UpdateProdutos" FormName="edit" Enhance>
+                        <DataAnnotationsValidator />
+                        <ValidationSummary role="alert" />
+                        <input type="hidden" name="Produtos.Id" value="@Produtos.Id" />
 
-                    <img src="savedisk_floppydisk_guardar_1543.png" alt="Salvar" height="30" width="30" />
+                        <div class="row">                            
+                            <div class="col-md-6 mb-3">
+                                <label for="cod_barras" class="form-label">Cód. Barras:</label>
+                                <InputText id="cod_barras" @bind-Value="Produtos.Cod_Barras" class="form-control" />
+                                <ValidationMessage For="() => Produtos.Cod_Barras" class="text-danger" />
+                            </div>
 
-                </button>
-                <a href="/produtos">
-                    
-                <img src="go-back256_24856.png" alt="Voltar a lista" height="30" width="30"/>
-                
-                </a>
-            </EditForm>
+                            <div class="col-md-6 mb-3">
+                                <label for="descricao" class="form-label">Descrição:</label>
+                                <InputText id="descricao" @bind-Value="Produtos.Descricao" class="form-control" />
+                                <ValidationMessage For="() => Produtos.Descricao" class="text-danger" />
+                            </div>
+                        </div>
+
+                        <div class="row">                           
+                            <div class="col-md-6 mb-3">
+                                <label for="id_categoria" class="form-label">Categoria:</label>
+                                <InputNumber id="id_categoria" @bind-Value="Produtos.Id_categoria" class="form-control" />
+                                <ValidationMessage For="() => Produtos.Id_categoria" class="text-danger" />
+                            </div>
+
+
+                            <div class="col-md-6 mb-3">
+                                <label for="un_medida" class="form-label">Un. Medida:</label>
+                                <InputSelect id="un_medida" @bind-Value="Produtos.Un_Medida" class="form-control ">
+                                    <option value="">Selecione a Unidade de Medida</option>
+                                    <option value="KG">Quilograma (KG)</option>
+                                    <option value="G">Grama (G)</option>
+                                    <option value="MG">Miligrama (MG)</option>
+                                    <option value="L">Litro (L)</option>
+                                    <option value="ML">Mililitro (ML)</option>
+                                    <option value="M">Metro (M)</option>
+                                    <option value="CM">Centímetro (CM)</option>
+                                    <option value="MM">Milímetro (MM)</option>
+                                    <option value="UN">Unidade (UN)</option>
+                                    <option value="PC">Peça (PC)</option>
+                                    <option value="DZ">Dúzia (DZ)</option>
+                                    <option value="CX">Caixa (CX)</option>
+                                    <option value="PAR">Par (PAR)</option>
+                                </InputSelect>
+                                <ValidationMessage For="() => Produtos.Un_Medida" class="text-danger" />
+                            </div>
+
+                        </div>
+
+                        <div class="row">                          
+                            <div class="col-md-6 mb-3">
+                                <label for="quantidade" class="form-label">Quantidade:</label>
+                                <InputNumber id="quantidade" @bind-Value="Produtos.Quantidade" class="form-control" />
+                                <ValidationMessage For="() => Produtos.Quantidade" class="text-danger" />
+                            </div>
+
+                           
+                            <div class="col-md-6 mb-3">
+                                <label for="id_fornecedor" class="form-label">Fornecedor:</label>
+                                <InputNumber id="id_fornecedor" @bind-Value="Produtos.Id_fornecedor" class="form-control" />
+                                <ValidationMessage For="() => Produtos.Id_fornecedor" class="text-danger" />
+                            </div>
+                        </div>
+
+                        <div class="row">                            
+                            <div class="col-md-6 mb-3">
+                                <label for="peso_medio" class="form-label">Peso Médio:</label>
+                                <InputNumber id="peso_medio" @bind-Value="Produtos.Peso_Medio" class="form-control" />
+                                <ValidationMessage For="() => Produtos.Peso_Medio" class="text-danger" />
+                            </div>
+
+                           
+                            <div class="col-md-6 mb-3">
+                                <label for="peso_bruto" class="form-label">Peso Bruto:</label>
+                                <InputNumber id="peso_bruto" @bind-Value="Produtos.Peso_bruto" class="form-control" />
+                                <ValidationMessage For="() => Produtos.Peso_bruto" class="text-danger" />
+                            </div>
+                        </div>
+
+                        <div class="row">                            
+                            <div class="col-md-6 mb-3">
+                                <label for="valor_compra" class="form-label">Vl. Compra:</label>
+                                <InputNumber id="valor_compra" @bind-Value="Produtos.Valor_Compra" class="form-control" />
+                                <ValidationMessage For="() => Produtos.Valor_Compra" class="text-danger" />
+                            </div>
+
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="margem_lucro" class="form-label">Margem de Lucro:</label>
+                                <InputNumber id="margem_lucro" @bind-Value="Produtos.Margem_Lucro" class="form-control" />
+                                <ValidationMessage For="() => Produtos.Margem_Lucro" class="text-danger" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="valor_venda" class="form-label">Vl. Venda:</label>
+                                <InputNumber id="valor_venda" @bind-Value="Produtos.Valor_Venda" class="form-control" />
+                                <ValidationMessage For="() => Produtos.Valor_Venda" class="text-danger" />
+                            </div>
+
+                            <!-- Campo Estoque_Min -->
+                            <div class="col-md-6 mb-3">
+                                <label for="estoque_min" class="form-label">Estoque Mínimo:</label>
+                                <InputNumber id="estoque_min" @bind-Value="Produtos.estoque_min" class="form-control" />
+                                <ValidationMessage For="() => Produtos.estoque_min" class="text-danger" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Campo Estoque_Max -->
+                            <div class="col-md-6 mb-3">
+                                <label for="estoque_max" class="form-label">Estoque Máximo:</label>
+                                <InputNumber id="estoque_max" @bind-Value="Produtos.estoque_max" class="form-control" />
+                                <ValidationMessage For="() => Produtos.estoque_max" class="text-danger" />
+                            </div>
+                        </div>
+
+                        <!-- Card footer with button inside the form -->
+                        <div class="card-footer text-end">
+                            <button class="btn me-3" title="Mudar Foto">
+
+                                <img src="photo-photography-image-picture_108525.png" alt="Mudar Foto" height="30" width="30" />
+
+                            </button>
+                            <button type="submit" class="btn me-3" title="Salvar Alterações">
+                                <img src="savedisk_floppydisk_guardar_1543.png" alt="Salvar" height="30" width="30" />
+                            </button>
+                            <a href="/produtos" title="Voltar para a Lista">
+                                <img src="go-back256_24856.png" alt="Voltar para a Lista" height="30" width="30" />
+                            </a>
+                        </div>
+                        
+                    </EditForm>
+                </div>
+            </div>
         </div>
     </div>
+
+
 }
 
 

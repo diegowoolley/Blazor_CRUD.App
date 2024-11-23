@@ -55,6 +55,7 @@ h1:focus {
     border-radius: 15px;
     overflow: hidden;
     font-size: 0.9em;
+ 
 }
 
     .table th, .table td {
@@ -62,8 +63,9 @@ h1:focus {
         vertical-align: middle;
     }
 
+   
 
-.actions-column {
+   .actions-column {
     width: 250px;
     text-align: center;
     vertical-align: middle;

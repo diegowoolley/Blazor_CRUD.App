@@ -10,9 +10,9 @@
 
 <h1>Lista de Produtos</h1>
 
-<a class="btn mt-4 mb-4" href="/produtos/create">
+<a class="btn mt-4 mb-4" href="/produtos/create" title="Adicionar">
 
-    <img src="stuffitboxproduct_stuffit_caj_2624.png" alt="Produto" height="40" width="40" />
+    <img src="businesspackage_additionalpackage_box_add_insert_negoci_2335.png" alt="Produto" height="40" width="40" />
 
 </a>
 
@@ -34,20 +34,20 @@
 
     <TemplateColumn Context="produtos" Class="actions-column">
 
-        <a class="btn mt-1 mb-1" href="@($"produtos/edit?id={produtos.Id}")">
+        <a class="btn mt-1 mb-1" href="@($"produtos/edit?id={produtos.Id}")" title="Editar">
 
 
             <img src="businesssettings_thebox_theproduct_negocio_2327.png" alt="Editar produto" height="30" width="30" />
 
         </a> |
-        <a class="btn mt-1 mb-1" href="@($"produtos/details?id={produtos.Id}")">
+        <a class="btn mt-1 mb-1" href="@($"produtos/details?id={produtos.Id}")" title="Detalhes">
 
 
             <img src="business_inventory_maintenance_product_box_boxes_2326.png" alt="Detalhes produto" height="30" width="30" />
 
 
         </a> |
-        <a href="@($"produtos/delete?id={produtos.Id}")">
+        <a href="@($"produtos/delete?id={produtos.Id}")" title="Remover">
 
             <img src="32officeicons-3_89720.png" alt="Remover produto" height="30" width="30" />
 

@@ -11,91 +11,156 @@
     <img src="Add_User-80_icon-icons.com_57380.png" alt="Adicionar Cliente" height="50" width="50" />
 
 </h1>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+
+<div class="card shadow-lg mb-4">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Adicionar Cliente</h5>
+        @if (Clientes.Foto == null)
+        {
+            <img src="SemFoto.png" alt="Foto do cliente" class="img-thumbnail" style="max-width: 80px;" />
+        }
+        else
+        {
+            <img src="@Clientes.Foto" alt="Foto do cliente" class="img-thumbnail" style="max-width: 80px;" />
+        }
+    </div>
+    <div class="card-body">
         <EditForm method="post" Model="Clientes" OnValidSubmit="AddClientes" FormName="create" Enhance>
             <DataAnnotationsValidator />
-            <ValidationSummary class="text-danger" role="alert"/>
-            <div class="mb-3">
-                <label for="nome" class="form-label">Nome:</label> 
-                <InputText id="nome" @bind-Value="Clientes.Nome" class="form-control" /> 
-                <ValidationMessage For="() => Clientes.Nome" class="text-danger" /> 
-            </div>        
-            <div class="mb-3">
-                <label for="documento" class="form-label">Documento:</label> 
-                <InputText id="documento" @bind-Value="Clientes.Documento" class="form-control" /> 
-                <ValidationMessage For="() => Clientes.Documento" class="text-danger" /> 
-            </div>        
-            <div class="mb-3">
-                <label for="email" class="form-label">E-mail:</label> 
-                <InputText id="email" @bind-Value="Clientes.email" class="form-control" /> 
-                <ValidationMessage For="() => Clientes.email" class="text-danger" /> 
-            </div>        
-            <div class="mb-3">
-                <label for="cep" class="form-label">Cep:</label> 
-                <InputText id="cep" @bind-Value="Clientes.cep" class="form-control" /> 
-                <ValidationMessage For="() => Clientes.cep" class="text-danger" /> 
-            </div>        
-            <div class="mb-3">
-                <label for="endereco" class="form-label">Endereço:</label> 
-                <InputText id="endereco" @bind-Value="Clientes.endereco" class="form-control" /> 
-                <ValidationMessage For="() => Clientes.endereco" class="text-danger" /> 
-            </div>        
-            <div class="mb-3">
-                <label for="bairro" class="form-label">Bairro:</label> 
-                <InputText id="bairro" @bind-Value="Clientes.bairro" class="form-control" /> 
-                <ValidationMessage For="() => Clientes.bairro" class="text-danger" /> 
-            </div>        
-            <div class="mb-3">
-                <label for="numero" class="form-label">Número:</label> 
-                <InputNumber id="numero" @bind-Value="Clientes.numero" class="form-control" /> 
-                <ValidationMessage For="() => Clientes.numero" class="text-danger" /> 
-            </div>        
-            <div class="mb-3">
-                <label for="cidade" class="form-label">Cidade:</label> 
-                <InputText id="cidade" @bind-Value="Clientes.cidade" class="form-control" /> 
-                <ValidationMessage For="() => Clientes.cidade" class="text-danger" /> 
-            </div>        
-            <div class="mb-3">
-                <label for="uf" class="form-label">Uf:</label> 
-                <InputText id="uf" @bind-Value="Clientes.uf" class="form-control" /> 
-                <ValidationMessage For="() => Clientes.uf" class="text-danger" /> 
-            </div>        
-            <div class="mb-3">
-                <label for="telefone" class="form-label">Telefone:</label> 
-                <InputText id="telefone" @bind-Value="Clientes.telefone" class="form-control" /> 
-                <ValidationMessage For="() => Clientes.telefone" class="text-danger" /> 
-            </div>        
-            <div class="mb-3">
-                <label for="celular" class="form-label">Celular:</label> 
-                <InputText id="celular" @bind-Value="Clientes.celular" class="form-control" /> 
-                <ValidationMessage For="() => Clientes.celular" class="text-danger" /> 
-            </div>        
-            @* <div class="mb-3">
-                <label for="foto" class="form-label">Foto:</label> 
-                <InputText id="foto" @bind-Value="Clientes.Foto" class="form-control" /> 
-                <ValidationMessage For="() => Clientes.Foto" class="text-danger" /> 
-            </div>  *@       
-            <button type="submit" class="btn me-3">
+            <ValidationSummary class="text-danger" role="alert" />
 
-                <img src="savedisk_floppydisk_guardar_1543.png" alt="Salvar" height="30" width="30" />
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="nome" class="form-label">Nome:</label>
+                    <InputText id="nome" @bind-Value="Clientes.Nome" class="form-control" />
+                    <ValidationMessage For="() => Clientes.Nome" class="text-danger" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="documento" class="form-label">Documento:</label>
+                    <InputText id="documento" @bind-Value="Clientes.Documento" class="form-control" />
+                    <ValidationMessage For="() => Clientes.Documento" class="text-danger" />
+                </div>
+            </div>
 
-            </button>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label">E-mail:</label>
+                    <InputText id="email" @bind-Value="Clientes.email" class="form-control" />
+                    <ValidationMessage For="() => Clientes.email" class="text-danger" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="cep" class="form-label">Cep:</label>
+                    <InputText id="cep" @bind-Value="Clientes.cep" class="form-control" />
+                    <ValidationMessage For="() => Clientes.cep" class="text-danger" />
+                </div>
+            </div>
 
-            <a href="/clientes">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="endereco" class="form-label">Endereço:</label>
+                    <InputText id="endereco" @bind-Value="Clientes.endereco" class="form-control" />
+                    <ValidationMessage For="() => Clientes.endereco" class="text-danger" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="bairro" class="form-label">Bairro:</label>
+                    <InputText id="bairro" @bind-Value="Clientes.bairro" class="form-control" />
+                    <ValidationMessage For="() => Clientes.bairro" class="text-danger" />
+                </div>
+            </div>
 
-                <img src="go-back256_24856.png" alt="Voltar a Lista" height="30" width="30" />
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="numero" class="form-label">Número:</label>
+                    <InputNumber id="numero" @bind-Value="Clientes.numero" class="form-control" />
+                    <ValidationMessage For="() => Clientes.numero" class="text-danger" />
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="cidade" class="form-label">Cidade:</label>
+                    <InputText id="cidade" @bind-Value="Clientes.cidade" class="form-control" />
+                    <ValidationMessage For="() => Clientes.cidade" class="text-danger" />
+                </div>
+            </div>
 
-            </a>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="uf" class="form-label">UF:</label>
+                    <InputSelect id="uf" @bind-Value="Clientes.uf" class="form-control">
+                        <option value="">Selecione o Estado</option>
+                        <option value="AC">Acre (AC)</option>
+                        <option value="AL">Alagoas (AL)</option>
+                        <option value="AP">Amapá (AP)</option>
+                        <option value="AM">Amazonas (AM)</option>
+                        <option value="BA">Bahia (BA)</option>
+                        <option value="CE">Ceará (CE)</option>
+                        <option value="DF">Distrito Federal (DF)</option>
+                        <option value="ES">Espírito Santo (ES)</option>
+                        <option value="GO">Goiás (GO)</option>
+                        <option value="MA">Maranhão (MA)</option>
+                        <option value="MT">Mato Grosso (MT)</option>
+                        <option value="MS">Mato Grosso do Sul (MS)</option>
+                        <option value="MG">Minas Gerais (MG)</option>
+                        <option value="PA">Pará (PA)</option>
+                        <option value="PB">Paraíba (PB)</option>
+                        <option value="PR">Paraná (PR)</option>
+                        <option value="PE">Pernambuco (PE)</option>
+                        <option value="PI">Piauí (PI)</option>
+                        <option value="RJ">Rio de Janeiro (RJ)</option>
+                        <option value="RN">Rio Grande do Norte (RN)</option>
+                        <option value="RS">Rio Grande do Sul (RS)</option>
+                        <option value="RO">Rondônia (RO)</option>
+                        <option value="RR">Roraima (RR)</option>
+                        <option value="SC">Santa Catarina (SC)</option>
+                        <option value="SP">São Paulo (SP)</option>
+                        <option value="SE">Sergipe (SE)</option>
+                        <option value="TO">Tocantins (TO)</option>
+                    </InputSelect>
+                    <ValidationMessage For="() => Clientes.uf" class="text-danger" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="telefone" class="form-label">Telefone:</label>
+                    <InputText id="telefone" @bind-Value="Clientes.telefone" class="form-control" />
+                    <ValidationMessage For="() => Clientes.telefone" class="text-danger" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="celular" class="form-label">Celular:</label>
+                    <InputText id="celular" @bind-Value="Clientes.celular" class="form-control" />
+                    <ValidationMessage For="() => Clientes.celular" class="text-danger" />
+                </div>
+            </div>
+            <div class="card-footer text-end">
+                <button class="btn me-3" title="Mudar Foto">
+
+                    <img src="photo-photography-image-picture_108525.png" alt="Mudar Foto" height="30" width="30" />
+
+                </button>
+
+                <button type="submit" class="btn me-3" title="Salvar Alterações">
+                    <img src="savedisk_floppydisk_guardar_1543.png" alt="Salvar" height="30" width="30" />
+                </button>
+
+                <a href="/clientes" class="btn" title="Voltar para a Lista">
+                    <img src="go-back256_24856.png" alt="Voltar para a Lista" height="30" width="30" />
+                </a>
+
+            </div>
+
         </EditForm>
     </div>
 </div>
 
 
+
 @code {
     [SupplyParameterFromForm]
     private Clientes Clientes { get; set; } = new();
+  
+
+  
+
 
     // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
     private async Task AddClientes()
@@ -105,4 +170,6 @@
         await context.SaveChangesAsync();
         NavigationManager.NavigateTo("/clientes");
     }
+  
+
 }

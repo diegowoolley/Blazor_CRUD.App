@@ -12,7 +12,7 @@
 <h1>Lista de Clientes</h1>
 
 
-<a class="btn mt-4 mb-4" href="/clientes/create">
+<a class="btn mt-4 mb-4" href="/clientes/create" title="Adicionar">
     <img src="Add_User-80_icon-icons.com_57380.png" alt="Adicionar Cliente"
          width="40" height="40">
 </a>
@@ -32,24 +32,23 @@
     <PropertyColumn Property="clientes => clientes.Foto" />
 
     <TemplateColumn Context="clientes" Class="actions-column">
-        <a class="btn mt-1 mb-1" href="@($"clientes/edit?id={clientes.Id}")">
+        <a class="btn mt-1 mb-1" href="@($"clientes/edit?id={clientes.Id}")" title="Editar">
 
             <img src="Edit_User-80_icon-icons.com_57329.png" alt="Editar Cliente"
                  width="25" height="25">
 
         </a>
         |
-        <a class="btn mt-1 mb-1" href="@($"clientes/details?id={clientes.Id}")">
+        <a class="btn mt-1 mb-1" href="@($"clientes/details?id={clientes.Id}")" title="Detalhes">
 
             <img src="Details-80_icon-icons.com_57338.png" alt="Detalhes Cliente"
                  width="25" height="25">
 
         </a> |
-        <a class="btn mt-1 mb-1" href="@($"clientes/delete?id={clientes.Id}")">
+        <a class="btn mt-1 mb-1" href="@($"clientes/delete?id={clientes.Id}")" title="Remover">
 
             <img src="Remove_User-80_icon-icons.com_57283.png" alt="Detalhes Cliente"
                  width="25" height="25">
-
 
         </a>
     </TemplateColumn>
