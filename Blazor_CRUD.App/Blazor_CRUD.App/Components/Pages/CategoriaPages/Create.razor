@@ -4,30 +4,40 @@
 @inject IDbContextFactory<Blazor_CRUD.App.Data.ApplicationDbContext> DbFactory
 @inject NavigationManager NavigationManager
 
-<PageTitle>Create</PageTitle>
+<PageTitle>Adicionar Categoria</PageTitle>
 
-<h1>Create</h1>
+<h1>
 
-<h2>Categoria</h2>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <img src="5445496.png" alt="Adicionar Categoria"  height="50" width="50"/>
+
+</h1>
+
+<div class="card shadow-lg mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Adicionar nova Categoria</h5>
+    </div>
+    <div class="card-body">
         <EditForm method="post" Model="Categoria" OnValidSubmit="AddCategoria" FormName="create" Enhance>
             <DataAnnotationsValidator />
-            <ValidationSummary class="text-danger" role="alert"/>
+            <ValidationSummary class="text-danger" role="alert" />
             <div class="mb-3">
-                <label for="nome" class="form-label">Nome:</label> 
-                <InputText id="nome" @bind-Value="Categoria.Nome" class="form-control" /> 
-                <ValidationMessage For="() => Categoria.Nome" class="text-danger" /> 
-            </div>        
-            <button type="submit" class="btn btn-primary">Create</button>
+                <label for="nome" class="form-label">Nome:</label>
+                <InputText id="nome" @bind-Value="Categoria.Nome" class="form-control" />
+                <ValidationMessage For="() => Categoria.Nome" class="text-danger" />
+            </div>
+            <div class=" card-footer text-end">
+                <button type="submit" class="btn me-3" title="Salvar Alterações">
+                    <img src="savedisk_floppydisk_guardar_1543.png" alt="Salvar" height="30" width="30" />
+                </button>
+                <a class="btn me-3" href="/categoria" title="Voltar para a Lista">
+                    <img src="go-back256_24856.png" alt="Voltar para a Lista" height="30" width="30" />
+                </a>
+            </div>
         </EditForm>
     </div>
 </div>
 
-<div>
-    <a href="/categoria">Back to List</a>
-</div>
+
 
 @code {
     [SupplyParameterFromForm]
