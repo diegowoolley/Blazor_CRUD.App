@@ -8,8 +8,8 @@ namespace Blazor_CRUD.App.Data
         public int Id { get; set; }
 
         [MaxLength(100)]
-        public string Nome { get; set; }
+        public string Nome { get; set; } = string.Empty;
 
-        public ICollection<Produtos> produtos { get; set; } = new List<Produtos>();
+        //public ICollection<Produtos> produtos { get; set; } = new List<Produtos>();
     }
 }

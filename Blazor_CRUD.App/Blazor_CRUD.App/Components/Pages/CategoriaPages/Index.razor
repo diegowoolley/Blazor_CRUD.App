@@ -1,0 +1,52 @@
+﻿@page "/categoria"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using Blazor_CRUD.App.Data
+@using Blazor_CRUD.App.Data
+@implements IAsyncDisposable
+@inject IDbContextFactory<Blazor_CRUD.App.Data.ApplicationDbContext> DbFactory
+
+<PageTitle>Categorias</PageTitle>
+
+<h1>Lista de Categorias</h1>
+
+    <a class="btn mt-4 mb-4" href="categoria/create" title="Adicionar">
+        
+    
+    <img src="5445496.png" alt="Categorias" height="50" width="50" />
+    
+    </a>
+
+
+<QuickGrid Class="table table-bordered table-striped table-primary text-center" Items="context.Categoria">
+    <PropertyColumn Property="categoria => categoria.Nome" />
+
+    <TemplateColumn Context="categoria" class="actions-column">
+        <a class="btn mt-1 mb-1" href="@($"categoria/edit?id={categoria.Id}")" title="Editar">
+            
+        <img src="documentediting_editdocuments_text_documentedi_2820.png" alt="Editar Categoria" height="30" width="30" />
+        
+        </a> |
+        <a class="btn mt-1 mb-1" href="@($"categoria/details?id={categoria.Id}")" title="Detalhes">
+        
+            <img src="Details-80_icon-icons.com_57338.png" alt="Detalhes Categorias" height="30" width="30" />
+                
+        </a> |
+        <a class="btn mt-1 mb-1" href="@($"categoria/delete?id={categoria.Id}")" title="Remover">
+            
+        <img src="32officeicons-3_89720.png" alt="Remover Categoria" height="30" width="30" />
+        
+        </a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private ApplicationDbContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}
