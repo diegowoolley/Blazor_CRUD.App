@@ -7,6 +7,9 @@ namespace BlazorCRUD.App.Data
 {
     public class Produtos
     {
+
+        //[StringLength(100, ErrorMessage = "O Nome não pode ter mais que 100 caracteres.")]
+
         public int Id { get; set; }
 
         [MaxLength(20)]
