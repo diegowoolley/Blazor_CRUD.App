@@ -41,7 +41,7 @@ namespace Blazor_CRUD.App.Data
 
         public Byte[]? Foto { get; set; }
 
-        public ICollection<Produtos> produtos { get; set; } = new List<Produtos>();
+ 
 
 
     }

@@ -159,7 +159,30 @@
     private Clientes Clientes { get; set; } = new();
   
 
-  
+   private void RestrictToNumbers(ChangeEventArgs e)
+    {
+        string input = e.Value?.ToString() ?? "";
+        Clientes.Documento = new string(input.Where(char.IsDigit).ToArray());
+    }
+
+    // Método para formatar o documento como CPF ou CNPJ
+    private void FormatarDocumento(FocusEventArgs e)
+    {
+        if (string.IsNullOrEmpty(Clientes.Documento))
+            return;
+
+        string doc = Clientes.Documento;
+        if (doc.Length == 11)
+        {
+            // Formatar como CPF
+            Clientes.Documento = $"{doc.Substring(0, 3)}.{doc.Substring(3, 3)}.{doc.Substring(6, 3)}-{doc.Substring(9, 2)}";
+        }
+        else if (doc.Length == 14)
+        {
+            // Formatar como CNPJ
+            Clientes.Documento = $"{doc.Substring(0, 2)}.{doc.Substring(2, 3)}.{doc.Substring(5, 3)}/{doc.Substring(8, 4)}-{doc.Substring(12, 2)}";
+        }
+    }
 
 
     // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.

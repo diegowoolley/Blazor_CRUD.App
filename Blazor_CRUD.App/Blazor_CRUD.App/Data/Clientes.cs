@@ -6,10 +6,14 @@ namespace BlazorCRUD.App.Data
     {
         public int Id { get; set; }
 
-        [MaxLength(100)]
+        [Required(ErrorMessage = "O nome é obrigatório.")]
+        [StringLength(100, ErrorMessage = "O nome não pode ter mais de 100 caracteres.")]
         public string Nome { get; set; } = string.Empty;
 
-        [MaxLength(20)]
+
+        [Required(ErrorMessage = "O documento é obrigatório.")]
+        [RegularExpression(@"^\d{11}$|^\d{14}$",
+               ErrorMessage = "Insira um CPF (11 dígitos) ou CNPJ (14 dígitos) válido.")]
         public string Documento { get; set; } = string.Empty;
 
         [MaxLength(100)]
