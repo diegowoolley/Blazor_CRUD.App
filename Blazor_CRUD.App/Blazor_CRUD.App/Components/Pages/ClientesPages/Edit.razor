@@ -93,7 +93,7 @@ else
                             <div class="col-md-6 mb-3">
                                 <label for="uf" class="form-label">UF:</label>
                                 <InputSelect id="uf" @bind-Value="Clientes.uf" class="form-control">
-                                    <option value="">Selecione o Estado</option>
+                                    <option selected>@Clientes.uf</option>
                                     <option value="AC">Acre (AC)</option>
                                     <option value="AL">Alagoas (AL)</option>
                                     <option value="AP">Amapá (AP)</option>

@@ -63,7 +63,7 @@ else
                             <div class="col-md-6 mb-3">
                                 <label for="un_medida" class="form-label">Un. Medida:</label>
                                 <InputSelect id="un_medida" @bind-Value="Produtos.Un_Medida" class="form-control ">
-                                    <option value="">Selecione a Unidade de Medida</option>
+                                    <option selected>@Produtos.Un_Medida</option>
                                     <option value="KG">Quilograma (KG)</option>
                                     <option value="G">Grama (G)</option>
                                     <option value="MG">Miligrama (MG)</option>
