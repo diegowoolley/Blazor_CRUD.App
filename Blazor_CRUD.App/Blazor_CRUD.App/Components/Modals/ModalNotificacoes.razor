@@ -1,0 +1,38 @@
+﻿
+
+<div class="modal fade" id="@Id" tabindex="-1" aria-labelledby="@IdLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@Title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @ChildContent
+            </div>
+            <div class="modal-footer">
+                @if (ShowCancelButton)
+                {
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@CancelButtonText</button>
+                }
+                <button type="button" class="btn btn-primary" @onclick="() => OnConfirm.InvokeAsync(null)" data-bs-dismiss="modal">
+                    @ConfirmButtonText
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter] public string Id { get; set; } = "reusableModal";
+    [Parameter] public string IdLabel { get; set; } = "reusableModalLabel";
+    [Parameter] public string Title { get; set; } = "Confirmação";
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public EventCallback OnConfirm { get; set; }
+    [Parameter] public bool ShowCancelButton { get; set; } = true;
+    [Parameter] public string CancelButtonText { get; set; } = "Cancelar";
+    [Parameter] public string ConfirmButtonText { get; set; } = "Confirmar";
+
+   
+}

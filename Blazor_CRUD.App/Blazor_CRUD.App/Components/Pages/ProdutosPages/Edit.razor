@@ -35,7 +35,7 @@ else
                 <div class="card-body">
                     <EditForm method="post" Model="Produtos" OnValidSubmit="UpdateProdutos" FormName="edit" Enhance>
                         <DataAnnotationsValidator />
-                        <ValidationSummary role="alert" />
+                        @* <ValidationSummary role="alert" /> *@
                         <input type="hidden" name="Produtos.Id" value="@Produtos.Id" />
 
                         <div class="row">                            
@@ -155,11 +155,11 @@ else
 
                         <!-- Card footer with button inside the form -->
                         <div class="card-footer text-end">
-                            <button class="btn me-3" title="Mudar Foto">
+                            <a class="btn me-3" title="Mudar Foto">
 
                                 <img src="photo-photography-image-picture_108525.png" alt="Mudar Foto" height="30" width="30" />
 
-                            </button>
+                            </a>
                             <button type="submit" class="btn me-3" title="Salvar Alterações">
                                 <img src="savedisk_floppydisk_guardar_1543.png" alt="Salvar" height="30" width="30" />
                             </button>
